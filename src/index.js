@@ -1,4 +1,4 @@
-import {createStore} from 'redux';
+import {combineReducer,createStore} from 'redux';
 const reducer=function(state,action){
 switch(action.type){
   case "INC":
