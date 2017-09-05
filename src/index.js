@@ -1,4 +1,5 @@
-import {combineReducers,createStore} from 'redux';
+import {applyMiddleware,combineReducers,createStore} from 'redux';
+import logger from 'redux-logger';
 const userReducer=(state={},action)=>{
   switch(action.type){
 case "NAME":
@@ -15,12 +16,17 @@ return state;
 const tweetsReducer=(state=[],action)=>{
 return state;
 };
+// const logger=(store)=>(next)=>(action)=>{
+//   console.log("Action fired",action);
+//   next(action);
+// };
+const middleware=applyMiddleware(logger);
 const reducer=combineReducers({
 user:userReducer,
-tweets:tweetsReducer
+tweets:tweetsReducer,
 });
 
-const store =createStore(reducer);
+const store =createStore(reducer,middleware);
 store.subscribe(()=>{
   console.log("Store changed",store.getState());
 });
