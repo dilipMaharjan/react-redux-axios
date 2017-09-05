@@ -16,7 +16,7 @@ export default function reducer(
 			return { ...state, fetching: true };
 		case "FETCH_USERS_ERROR":
 			return { ...state, fetching: false, error: action.payload };
-		case "RECEIVE_USERS":
+		case "FETCH_USER_RECEIVED":
 			return {
 				...state,
 				fetching: false,
