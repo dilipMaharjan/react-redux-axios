@@ -8,9 +8,10 @@ export function fetchTweets() {
 				dispatch({
 					type: "FETCH_TWEETS_RECEIVED",
 					payload: response.data
-				}).catch(err => {
-					dispatch({ type: "FETCH_TWEETS_ERROR", payload: err });
 				});
+			})
+			.catch(err => {
+				dispatch({ type: "FETCH_TWEETS_ERROR", payload: err });
 			});
 	};
 }

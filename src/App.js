@@ -1,20 +1,28 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { connect } from "react-redux";
 import { fetchUser } from "./js/actions/user-action";
+import { fetchTweets } from "./js/actions/tweets-action";
 class App extends Component {
 	componentWillMount() {
 		this.props.dispatch(fetchUser());
 	}
+	getTweets() {
+		this.props.dispatch(fetchTweets());
+	}
+
 	render() {
+		const { tweets, user } = this.props;
+		if (!tweets.length) {
+			return <button onClick={this.getTweets.bind(this)}>Load Tweets</button>;
+		}
+		const mappedTweets = tweets.map((tweet, i) => {
+			return <li key={i}>{tweet.text}</li>;
+		});
 		return (
 			<div className="App">
-				<div className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<h2>Welcome to React</h2>
-				</div>
-				<p className="App-intro">{console.log(this.props)}</p>
+				<h1>{user.name}</h1>
+				<ol>{mappedTweets}</ol>
 			</div>
 		);
 	}

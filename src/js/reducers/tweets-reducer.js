@@ -17,7 +17,7 @@ export default function reducer(
 				...state,
 				fetching: false,
 				fetched: true,
-				users: action.payload
+				tweets: action.payload
 			};
 		default:
 			return state;
