@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function fetchTweets() {
 	return function(dispatch) {
-		axios
+		return axios
 			.get("http://rest.learncode.academy/api/test123/tweets")
 			.then(response => {
 				dispatch({
