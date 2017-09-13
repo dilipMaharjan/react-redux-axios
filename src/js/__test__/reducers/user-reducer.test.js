@@ -1,28 +1,51 @@
-import * as userAction from "../../actions/user-action";
+import reducer from "../../reducers/user-reducer";
 
-it("user data is fetched", () => {
-	const expected = {
-		type: "FETCH_USER_RECEIVED",
-		payload: {
-			name: "Will",
-			age: 35
-		}
-	};
-	expect(userAction.fetchUser()).toEqual(expected);
+it("returns the initial state", () => {
+	expect(reducer(undefined, {})).toEqual({
+		users: {
+			id: null,
+			name: null,
+			age: null
+		},
+		fetching: false,
+		fetched: false,
+		error: null
+	});
+});
+it("returns the initial state", () => {
+	expect(reducer(undefined, {})).toEqual({
+		users: {
+			id: null,
+			name: null,
+			age: null
+		},
+		fetching: false,
+		fetched: false,
+		error: null
+	});
 });
 
-it("user name is set", () => {
-	const expected = {
-		type: "SET_USER_NAME",
-		payload: "dilip"
-	};
-	expect(userAction.setUserName("dilip")).toEqual(expected);
+it("returns the fetching true", () => {
+	expect(reducer({}, { type: "FETCH_USER_START" })).toEqual({
+		fetching: true
+	});
 });
 
-it("user age is set", () => {
-	const expected = {
-		type: "SET_USER_AGE",
-		payload: 34
-	};
-	expect(userAction.setUserAge(34)).toEqual(expected);
+it("returns the error", () => {
+	expect(reducer({}, { type: "FETCH_USERS_ERROR" })).toEqual({
+		fetching: false
+	});
+});
+
+it("returns the error", () => {
+	expect(
+		reducer(
+			{},
+			{ type: "FETCH_USER_RECEIVED", payload: { name: "Will", age: 35 } }
+		)
+	).toEqual({
+		fetching: false,
+		fetched: true,
+		users: { age: 35, name: "Will" }
+	});
 });

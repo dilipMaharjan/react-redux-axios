@@ -1,16 +1,14 @@
-export default function reducer(
-	state = {
-		users: {
-			id: null,
-			name: null,
-			age: null
-		},
-		fetching: false,
-		fetched: false,
-		error: null
+const initialState = {
+	users: {
+		id: null,
+		name: null,
+		age: null
 	},
-	action
-) {
+	fetching: false,
+	fetched: false,
+	error: null
+};
+export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case "FETCH_USER_START":
 			return { ...state, fetching: true };

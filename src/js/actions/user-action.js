@@ -20,3 +20,9 @@ export function setUserAge(age) {
 		payload: age
 	};
 }
+export function error() {
+	return {
+		type: "FETCH_USERS_ERROR",
+		payload: "There's a error"
+	};
+}
