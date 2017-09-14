@@ -15,12 +15,3 @@ export function fetchTweets() {
 			});
 	};
 }
-export function addTweet(id, text) {
-	return {
-		type: "ADD_TWEET",
-		payload: {
-			id,
-			text
-		}
-	};
-}
